@@ -1,3 +1,3 @@
-export default function getListStudents(students, location) {
+export default function getStudentsByLocation(students, location) {
   return students.filter((student) => student.location == location);
 }
