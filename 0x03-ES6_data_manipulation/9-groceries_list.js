@@ -1,3 +1,7 @@
+/**
+ * Returns a map of groceries with their quantities.
+ * @returns {Map<string, number>} The groceries map.
+ */
 export default function groceriesList() {
   return new Map([
     ["Apples", 10],
