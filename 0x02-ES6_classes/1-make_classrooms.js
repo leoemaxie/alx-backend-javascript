@@ -1,11 +1,9 @@
-import Classroom from './0-classroom';
+import ClassRoom from './0-classroom';
 
-function initializeRooms() {
-  return [
-    new Classroom(19),
-    new Classroom(20),
-    new Classroom(34),
-  ];
+/**
+ * Creates an array of {@link ClassRoom}s with a specific size.
+ * @returns An array of {@link ClassRoom}s.
+ */
+export default function initializeRooms() {
+  return [19, 20, 34].map((size) => new ClassRoom(size));
 }
-
-export default initializeRooms;

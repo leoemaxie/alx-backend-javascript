@@ -1,9 +1,19 @@
 /**
- * Calculates the sum of student IDs.
- *
- * @param {Array} students - An array of student objects.
- * @returns {number} - The sum of student IDs.
+ * Retrieves the sum of ids of a list of students.
+ * @param {{
+ *   id: Number,
+ *   firstName: String,
+ *   location: String
+ * }[]} students - The list of students.
+ * @author Bezaleel Olakunori <https://github.com/B3zaleel>
+ * @returns {Number}
  */
 export default function getStudentIdsSum(students) {
-  return students.map((student) => student.id).reduce((a, b) => a + b);
+  if (students instanceof Array) {
+    return students.reduce(
+      (prevStudent, curStudent) => prevStudent.id || prevStudent + curStudent.id,
+      0,
+    );
+  }
+  return 0;
 }

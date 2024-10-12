@@ -1,23 +1,32 @@
 /**
- * Updates the grade of students based on their city.
- *
- * @param {Array} students - The array of student objects.
- * @param {string} city - The city to filter the students by.
- * @param {Array} newGrades - The array of new grades to update.
- * @returns {Array} - The updated array of student objects.
+ * Updates the grades of a list of students in a given city.
+ * @param {{
+ *   id: Number,
+ *   firstName: String,
+ *   location: String
+ * }[]} students - The list of students.
+ * @param {*} city - The city of students.
+ * @param {{
+ *   studentId: Number,
+ *   grade: Number,
+ * }[]} newGrades - The new grades to be given to a student.
+ * @author Bezaleel Olakunori <https://github.com/B3zaleel>
+ * @returns {{id: Number, firstName: String, location: String}[]}
  */
 export default function updateStudentGradeByCity(students, city, newGrades) {
-  return students
-    .filter((student) => student.location == city)
-    .map((student) => {
-      let grade = newGrades.filter((score) => score.studentId == student.id);
+  const defaultGrade = { grade: 'N/A' };
 
-      if (grade.length > 0) {
-        student.grade = grade[0].grade;
-      } else {
-        student.grade = "N/A";
-      }
-
-      return student;
-    });
+  if (students instanceof Array) {
+    return students
+      .filter((student) => student.location === city)
+      .map((student) => ({
+        id: student.id,
+        firstName: student.firstName,
+        location: student.location,
+        grade: (newGrades
+          .filter((grade) => grade.studentId === student.id)
+          .pop() || defaultGrade).grade,
+      }));
+  }
+  return [];
 }
